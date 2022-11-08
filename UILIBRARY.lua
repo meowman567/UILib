@@ -67,7 +67,7 @@ function Library:CreateWindow(Configs)
 	--Properties:
 
 	PlayerInit.Name = "PlayerInit"
-	PlayerInit.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	PlayerInit.Parent = game.CoreGui
 	PlayerInit.Enabled = true
 	PlayerInit.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -525,7 +525,6 @@ function Library:CreateWindow(Configs)
 	end
 	
 	
-	
 
 
 
@@ -534,15 +533,42 @@ function Library:CreateWindow(Configs)
 	
 	local TabCreation = {}
 	
-	function TabCreation:CreateTab(Configs)
+	function TabCreation:SetPage(Page)
+		for x,v in pairs(Main_2:GetChildren()) do
+			if v:FindFirstChild("UIListLayout") then
+				v.Visible = false
+			end
+		end
+		Page.Visible = true
+	end
+	
+	
+	function TabCreation:CreatePage(Configs)
+		local tab = SampleTab:Clone()
+		tab.Name = Configs["Name"]
+		tab.TextButton.Text = Configs["Name"]
+		tab.Visible = true
+		tab.Parent = ScrollingFrame
 		
+		local page = ExamplePage:Clone()
+		page.Name = Configs["Name"]
+		page.Parent = Main_2
+		page.Visible = false
 		
-		
+		tab.TextButton.MouseButton1Click:Connect(function()TabCreation:SetPage(page)end)	
 		
 		
 		local OptionCreation = {}
 		
-		
+		function OptionCreation:CreateButton(Configs)
+			local button = SampleButton:Clone()
+			button.Parent = page
+			button.Name = Configs["Name"]
+			button.TextLabel.Text = Configs["Name"]
+			button.Visible = true
+			
+			button.ImageButton.MouseButton1Click:Connect(Configs["Callback"])
+		end
 		
 		
 		return OptionCreation
