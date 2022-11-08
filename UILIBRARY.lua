@@ -525,6 +525,10 @@ function Library:CreateWindow(Configs)
 		Main.Position = UDim2.new(0.513798296, 0, 0.110989012, 0)
 	end
 	
+	function Library:DestroyGui()
+		PlayerInit:Destroy()
+	end
+	
 	
 
 
@@ -574,8 +578,16 @@ function Library:CreateWindow(Configs)
 		
 		return OptionCreation
 	end
+	
+	
+	
+	
+	
 	return TabCreation
 end
+
+
+
 
 
 return Library
