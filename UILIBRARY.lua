@@ -580,6 +580,47 @@ function Library:CreateWindow(Configs)
 			button.ImageButton.MouseButton1Click:Connect(Configs["Callback"])
 		end
 		
+		function OptionCreation:CreateToggle(Configs)
+			local Toggle = SampleButton:Clone()
+			Toggle.Parent = page
+			Toggle.Name = Configs["Name"]
+			Toggle.TextLabel.Text = Configs["Name"]
+			Toggle.Visible = true
+
+			Toggle.ImageButton.MouseButton1Click:Connect(function()
+				if Toggle.ImageButton.Frame.Visible == false then
+					Toggle.ImageButton.Frame.Visible = true
+					Configs["Callback"]("Enable")
+				else
+					Toggle.ImageButton.Frame.Visible = false
+					Configs["Callback"]("Disable")
+				end
+			end)
+
+		end
+		
+		function OptionCreation:CreateText(Configs)
+			local Text = SampleText:Clone()
+			Text.Parent = page
+			Text.Name = Configs["Name"]
+			Text.TextLabel.Text = Configs["Text"]
+			Text.Visible = true
+			
+			return Text.TextLabel
+		end
+		
+		function OptionCreation:CreateInput(Configs)
+			local Input = SampleTextInput:Clone()
+			Input.Parent = page
+			Input.Name = Configs["Name"]
+			Input.TextLabel.Text = Configs["Name"]
+			Input.TextBox.PlaceholderText = Configs["PlaceholderText"]
+			Input.Visible = true
+			
+			Input.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
+				Configs["TextChangedCallback"](Input.TextBox.Text)
+			end)
+		end
 		
 		return OptionCreation
 	end
