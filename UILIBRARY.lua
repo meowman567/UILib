@@ -117,7 +117,7 @@ function Library:CreateWindow(Configs)
 	TextLabel.TextColor3 = PrimaryColor
 	TextLabel.TextSize = 23.000
 
-	TextLabel.Parent = game.StarterGui.PlayerInit.Main.Title
+	TextLabel.Parent = Title
 	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TextLabel.BackgroundTransparency = 1.000
 	TextLabel.Position = UDim2.new(0.0367346928, 0, 0, 0)
