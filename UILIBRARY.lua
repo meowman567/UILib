@@ -117,16 +117,17 @@ function Library:CreateWindow(Configs)
 	TextLabel.TextColor3 = PrimaryColor
 	TextLabel.TextSize = 23.000
 
-	TextLabel_2.Parent = Title
-	TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel_2.BackgroundTransparency = 1.000
-	TextLabel_2.Position = UDim2.new(0.893877566, 0, 0, 0)
-	TextLabel_2.Size = UDim2.new(0, 52, 0, 31)
-	TextLabel_2.ZIndex = 6
-	TextLabel_2.Font = Enum.Font.Gotham
-	TextLabel_2.Text = WindowVersion
-	TextLabel_2.TextColor3 = PrimaryColor
-	TextLabel_2.TextSize = 23.000
+	TextLabel.Parent = game.StarterGui.PlayerInit.Main.Title
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.BackgroundTransparency = 1.000
+	TextLabel.Position = UDim2.new(0.0367346928, 0, 0, 0)
+	TextLabel.Size = UDim2.new(0, 370, 0, 31)
+	TextLabel.ZIndex = 6
+	TextLabel.Font = Enum.Font.Gotham
+	TextLabel.Text = WindowName
+	TextLabel.TextColor3 = PrimaryColor
+	TextLabel.TextSize = 23.000
+	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 	Side.Name = "Side"
 	Side.Parent = Main
