@@ -521,22 +521,27 @@ function Library:CreateWindow(Configs)
 	
 	
 	
-	function Library:ReturnToScreen()
-		Main.Position = UDim2.new(0.513798296, 0, 0.110989012, 0)
-	end
+
 	
-	function Library:DestroyGui()
-		PlayerInit:Destroy()
-	end
+	
 	
 	
 
-
+	
 
 
 	
 	
 	local TabCreation = {}
+	
+	
+	function TabCreation:ReturnToScreen()
+		Main.Position = UDim2.new(0.513798296, 0, 0.110989012, 0)
+	end
+
+	function TabCreation:DestroyGui()
+		PlayerInit:Destroy()
+	end
 	
 	function TabCreation:SetPage(Page)
 		for x,v in pairs(Main_2:GetChildren()) do
@@ -591,3 +596,37 @@ end
 
 
 return Library
+
+
+
+
+
+
+
+
+local window = Library:CreateWindow({
+	Name = "Test",
+	PColor = Color3.fromRGB(160, 254, 255),
+	DestroyOtherInstances = false,
+	PlayerRank = "dint",
+	Vers = "v1"
+})
+
+
+local page = window:CreatePage({
+	Name = "Test"
+})
+
+local button = page:CreateButton({
+	Name = "The",
+	Callback = function()
+		print("YEAAAAAAAAAAAAAAAAAAAAAAAAAA")
+	end,
+})
+
+
+UserInputService.InputBegan:Connect(function(input)
+	if input == Enum.KeyCode.PageUp then
+
+	end
+end)
