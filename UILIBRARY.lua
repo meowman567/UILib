@@ -70,6 +70,7 @@ function Library:CreateWindow(Configs)
 	PlayerInit.Parent = game.CoreGui
 	PlayerInit.Enabled = true
 	PlayerInit.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	PlayerInit.ResetOnSpawn = false
 
 	Main.Name = "Main"
 	Main.Parent = PlayerInit
