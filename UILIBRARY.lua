@@ -596,37 +596,3 @@ end
 
 
 return Library
-
-
-
-
-
-
-
-
-local window = Library:CreateWindow({
-	Name = "Test",
-	PColor = Color3.fromRGB(160, 254, 255),
-	DestroyOtherInstances = false,
-	PlayerRank = "dint",
-	Vers = "v1"
-})
-
-
-local page = window:CreatePage({
-	Name = "Test"
-})
-
-local button = page:CreateButton({
-	Name = "The",
-	Callback = function()
-		print("YEAAAAAAAAAAAAAAAAAAAAAAAAAA")
-	end,
-})
-
-
-UserInputService.InputBegan:Connect(function(input)
-	if input == Enum.KeyCode.PageUp then
-
-	end
-end)
