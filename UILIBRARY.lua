@@ -581,7 +581,7 @@ function Library:CreateWindow(Configs)
 		end
 		
 		function OptionCreation:CreateToggle(Configs)
-			local Toggle = SampleButton:Clone()
+			local Toggle = SampleToggle:Clone()
 			Toggle.Parent = page
 			Toggle.Name = Configs["Name"]
 			Toggle.TextLabel.Text = Configs["Name"]
@@ -631,8 +631,6 @@ function Library:CreateWindow(Configs)
 	
 	return TabCreation
 end
-
-
 
 
 
