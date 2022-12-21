@@ -956,11 +956,11 @@ function Library:CreateWindow(Configs)
 			end)
 			
 			function ToggleFunctions:TurnOff()
-				Toggle.ImageButton.Frame.Visible = true
+				Toggle.ImageButton.Frame.Visible = false
 			end
 			
 			function ToggleFunctions:TurnOn()
-				Toggle.ImageButton.Frame.Visible = false
+				Toggle.ImageButton.Frame.Visible = true
 			end
 			
 			return ToggleFunctions
