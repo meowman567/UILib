@@ -40,17 +40,17 @@ function Library:CreateWindow(Configs)
 	local TextLabel_4 = Instance.new("TextLabel")
 	local ImageButton = Instance.new("ImageButton")
 	local UICorner_6 = Instance.new("UICorner")
-	local SampleToggle = Instance.new("Frame")
+	local SampleTextInput = Instance.new("Frame")
 	local UICorner_7 = Instance.new("UICorner")
 	local TextLabel_5 = Instance.new("TextLabel")
-	local ImageButton_2 = Instance.new("ImageButton")
-	local UICorner_8 = Instance.new("UICorner")
-	local Frame = Instance.new("Frame")
-	local UICorner_9 = Instance.new("UICorner")
-	local SampleTextInput = Instance.new("Frame")
-	local UICorner_10 = Instance.new("UICorner")
-	local TextLabel_6 = Instance.new("TextLabel")
 	local TextBox = Instance.new("TextBox")
+	local UICorner_8 = Instance.new("UICorner")
+	local SampleToggle = Instance.new("Frame")
+	local UICorner_9 = Instance.new("UICorner")
+	local TextLabel_6 = Instance.new("TextLabel")
+	local ImageButton_2 = Instance.new("ImageButton")
+	local UICorner_10 = Instance.new("UICorner")
+	local Frame = Instance.new("Frame")
 	local UICorner_11 = Instance.new("UICorner")
 	local Notifications = Instance.new("Frame")
 	local UIListLayout_3 = Instance.new("UIListLayout")
@@ -63,12 +63,53 @@ function Library:CreateWindow(Configs)
 	local Title_2 = Instance.new("Frame")
 	local TitleText = Instance.new("TextLabel")
 	local NotifText = Instance.new("TextLabel")
+	local Executor = Instance.new("Frame")
+	local UICorner_14 = Instance.new("UICorner")
+	local Title_3 = Instance.new("Frame")
+	local titletop_2 = Instance.new("Frame")
+	local UICorner_15 = Instance.new("UICorner")
+	local titlebottom_2 = Instance.new("Frame")
+	local TextLabel_7 = Instance.new("TextLabel")
+	local Run = Instance.new("TextButton")
+	local UICorner_16 = Instance.new("UICorner")
+	local UIGradient = Instance.new("UIGradient")
+	local Side_2 = Instance.new("Frame")
+	local UICorner_17 = Instance.new("UICorner")
+	local ScrollingFrame_2 = Instance.new("ScrollingFrame")
+	local UIListLayout_4 = Instance.new("UIListLayout")
+	local SampleTab_2 = Instance.new("Frame")
+	local TextButton_2 = Instance.new("TextButton")
+	local Main_3 = Instance.new("Frame")
+	local UICorner_18 = Instance.new("UICorner")
+	local Frame_4 = Instance.new("Frame")
+	local UICorner_19 = Instance.new("UICorner")
+	local ScrollingFrame_3 = Instance.new("ScrollingFrame")
+	local TextBox_2 = Instance.new("TextBox")
+	local ExampleList = Instance.new("Frame")
+	local UICorner_20 = Instance.new("UICorner")
+	local Title_4 = Instance.new("Frame")
+	local titletop_3 = Instance.new("Frame")
+	local UICorner_21 = Instance.new("UICorner")
+	local titlebottom_3 = Instance.new("Frame")
+	local TextLabel_8 = Instance.new("TextLabel")
+	local Side_3 = Instance.new("Frame")
+	local UICorner_22 = Instance.new("UICorner")
+	local ScrollingFrame_4 = Instance.new("ScrollingFrame")
+	local UIListLayout_5 = Instance.new("UIListLayout")
+	local SampleTab_3 = Instance.new("Frame")
+	local TextButton_3 = Instance.new("TextButton")
+	local List = Instance.new("ScrollingFrame")
+	local UIListLayout_6 = Instance.new("UIListLayout")
+	local UIPadding_3 = Instance.new("UIPadding")
+	local SampleText_2 = Instance.new("Frame")
+	local UICorner_23 = Instance.new("UICorner")
+	local TextLabel_9 = Instance.new("TextLabel")
+	local UIGradient_2 = Instance.new("UIGradient")
 
 	--Properties:
 
 	PlayerInit.Name = "PlayerInit"
-	PlayerInit.Parent = game.CoreGui
-	PlayerInit.Enabled = true
+	PlayerInit.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	PlayerInit.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	PlayerInit.ResetOnSpawn = false
 
@@ -78,6 +119,7 @@ function Library:CreateWindow(Configs)
 	Main.ClipsDescendants = true
 	Main.Position = UDim2.new(0.513798296, 0, 0.110989012, 0)
 	Main.Size = UDim2.new(0, 490, 0, 502)
+	Main.Visible = false
 
 	UICorner.CornerRadius = UDim.new(0, 10)
 	UICorner.Parent = Main
@@ -253,17 +295,17 @@ function Library:CreateWindow(Configs)
 	UICorner_6.CornerRadius = UDim.new(0, 5)
 	UICorner_6.Parent = ImageButton
 
-	SampleToggle.Name = "SampleToggle"
-	SampleToggle.Parent = Main_2
-	SampleToggle.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
-	SampleToggle.Position = UDim2.new(0, 0, -6.56292016e-08, 0)
-	SampleToggle.Size = UDim2.new(0, 329, 0, 34)
-	SampleToggle.Visible = false
+	SampleTextInput.Name = "SampleTextInput"
+	SampleTextInput.Parent = Main_2
+	SampleTextInput.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+	SampleTextInput.Position = UDim2.new(0, 0, -6.56292016e-08, 0)
+	SampleTextInput.Size = UDim2.new(0, 329, 0, 34)
+	SampleTextInput.Visible = false
 
 	UICorner_7.CornerRadius = UDim.new(0, 7)
-	UICorner_7.Parent = SampleToggle
+	UICorner_7.Parent = SampleTextInput
 
-	TextLabel_5.Parent = SampleToggle
+	TextLabel_5.Parent = SampleTextInput
 	TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TextLabel_5.BackgroundTransparency = 1.000
 	TextLabel_5.Position = UDim2.new(0.0212765951, 0, 0, 0)
@@ -273,47 +315,6 @@ function Library:CreateWindow(Configs)
 	TextLabel_5.TextColor3 = PrimaryColor
 	TextLabel_5.TextSize = 23.000
 	TextLabel_5.TextXAlignment = Enum.TextXAlignment.Left
-
-	ImageButton_2.Parent = SampleToggle
-	ImageButton_2.AnchorPoint = Vector2.new(0.5, 0.5)
-	ImageButton_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-	ImageButton_2.Position = UDim2.new(0.866261423, 0, 0.5, 0)
-	ImageButton_2.Size = UDim2.new(0, 75, 0, 24)
-	ImageButton_2.ImageColor3 = Color3.fromRGB(27, 27, 27)
-
-	UICorner_8.CornerRadius = UDim.new(0, 5)
-	UICorner_8.Parent = ImageButton_2
-
-	Frame.Parent = ImageButton_2
-	Frame.AnchorPoint = Vector2.new(0.5, 0.5)
-	Frame.BackgroundColor3 = PrimaryColor
-	Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-	Frame.Size = UDim2.new(0.910000026, 0, 0.800000012, 0)
-	Frame.Visible = false
-
-	UICorner_9.CornerRadius = UDim.new(0, 5)
-	UICorner_9.Parent = Frame
-
-	SampleTextInput.Name = "SampleTextInput"
-	SampleTextInput.Parent = Main_2
-	SampleTextInput.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
-	SampleTextInput.Position = UDim2.new(0, 0, -6.56292016e-08, 0)
-	SampleTextInput.Size = UDim2.new(0, 329, 0, 34)
-	SampleTextInput.Visible = false
-
-	UICorner_10.CornerRadius = UDim.new(0, 7)
-	UICorner_10.Parent = SampleTextInput
-
-	TextLabel_6.Parent = SampleTextInput
-	TextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel_6.BackgroundTransparency = 1.000
-	TextLabel_6.Position = UDim2.new(0.0212765951, 0, 0, 0)
-	TextLabel_6.Size = UDim2.new(0.604863226, 0, 1, 0)
-	TextLabel_6.Font = Enum.Font.Gotham
-	TextLabel_6.Text = "Text"
-	TextLabel_6.TextColor3 = PrimaryColor
-	TextLabel_6.TextSize = 23.000
-	TextLabel_6.TextXAlignment = Enum.TextXAlignment.Left
 
 	TextBox.Parent = SampleTextInput
 	TextBox.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -326,8 +327,49 @@ function Library:CreateWindow(Configs)
 	TextBox.TextColor3 = PrimaryColor
 	TextBox.TextSize = 15.000
 
+	UICorner_8.CornerRadius = UDim.new(0, 5)
+	UICorner_8.Parent = TextBox
+
+	SampleToggle.Name = "SampleToggle"
+	SampleToggle.Parent = Main_2
+	SampleToggle.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+	SampleToggle.Position = UDim2.new(0, 0, -6.56292016e-08, 0)
+	SampleToggle.Size = UDim2.new(0, 329, 0, 34)
+	SampleToggle.Visible = false
+
+	UICorner_9.CornerRadius = UDim.new(0, 7)
+	UICorner_9.Parent = SampleToggle
+
+	TextLabel_6.Parent = SampleToggle
+	TextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel_6.BackgroundTransparency = 1.000
+	TextLabel_6.Position = UDim2.new(0.0212765951, 0, 0, 0)
+	TextLabel_6.Size = UDim2.new(0.604863226, 0, 1, 0)
+	TextLabel_6.Font = Enum.Font.Gotham
+	TextLabel_6.Text = "Text"
+	TextLabel_6.TextColor3 = PrimaryColor
+	TextLabel_6.TextSize = 23.000
+	TextLabel_6.TextXAlignment = Enum.TextXAlignment.Left
+
+	ImageButton_2.Parent = SampleToggle
+	ImageButton_2.AnchorPoint = Vector2.new(0.5, 0.5)
+	ImageButton_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	ImageButton_2.Position = UDim2.new(0.866261423, 0, 0.5, 0)
+	ImageButton_2.Size = UDim2.new(0, 75, 0, 24)
+	ImageButton_2.ImageColor3 = Color3.fromRGB(27, 27, 27)
+
+	UICorner_10.CornerRadius = UDim.new(0, 5)
+	UICorner_10.Parent = ImageButton_2
+
+	Frame.Parent = ImageButton_2
+	Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+	Frame.BackgroundColor3 = PrimaryColor
+	Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Frame.Size = UDim2.new(0.910000026, 0, 0.800000012, 0)
+	Frame.Visible = false
+
 	UICorner_11.CornerRadius = UDim.new(0, 5)
-	UICorner_11.Parent = TextBox
+	UICorner_11.Parent = Frame
 
 	Notifications.Name = "Notifications"
 	Notifications.Parent = PlayerInit
@@ -401,6 +443,286 @@ function Library:CreateWindow(Configs)
 	NotifText.TextWrapped = true
 	NotifText.TextXAlignment = Enum.TextXAlignment.Left
 	NotifText.TextYAlignment = Enum.TextYAlignment.Top
+
+	Executor.Name = "Executor"
+	Executor.Parent = PlayerInit
+	Executor.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	Executor.ClipsDescendants = true
+	Executor.Position = UDim2.new(0.214000016, 0, 0.111000009, 0)
+	Executor.Size = UDim2.new(0, 438, 0, 400)
+	Executor.Visible = false
+
+	UICorner_14.CornerRadius = UDim.new(0, 10)
+	UICorner_14.Parent = Executor
+
+	Title_3.Name = "Title"
+	Title_3.Parent = Executor
+	Title_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Title_3.BackgroundTransparency = 1.000
+	Title_3.Size = UDim2.new(0, 438, 0, 31)
+	Title_3.ZIndex = 3
+
+	titletop_2.Name = "titletop"
+	titletop_2.Parent = Title_3
+	titletop_2.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
+	titletop_2.BorderSizePixel = 0
+	titletop_2.Size = UDim2.new(0, 438, 0, 18)
+	titletop_2.ZIndex = 4
+
+	UICorner_15.CornerRadius = UDim.new(0, 10)
+	UICorner_15.Parent = titletop_2
+
+	titlebottom_2.Name = "titlebottom"
+	titlebottom_2.Parent = Title_3
+	titlebottom_2.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
+	titlebottom_2.BorderSizePixel = 0
+	titlebottom_2.Position = UDim2.new(0, 0, 0.464663357, 0)
+	titlebottom_2.Size = UDim2.new(0, 438, 0, 17)
+	titlebottom_2.ZIndex = 4
+
+	TextLabel_7.Parent = Title_3
+	TextLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel_7.BackgroundTransparency = 1.000
+	TextLabel_7.BorderColor3 = Color3.fromRGB(27, 27, 27)
+	TextLabel_7.Position = UDim2.new(0.0367346928, 0, 0, 0)
+	TextLabel_7.Size = UDim2.new(0, 370, 0, 31)
+	TextLabel_7.ZIndex = 6
+	TextLabel_7.Font = Enum.Font.Gotham
+	TextLabel_7.Text = "Code Executor"
+	TextLabel_7.TextColor3 = PrimaryColor
+	TextLabel_7.TextSize = 23.000
+	TextLabel_7.TextXAlignment = Enum.TextXAlignment.Left
+
+	Run.Name = "Run"
+	Run.Parent = Title_3
+	Run.AnchorPoint = Vector2.new(0, 0.5)
+	Run.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	Run.Position = UDim2.new(0.686867654, 0, 0.5, 0)
+	Run.Size = UDim2.new(0.290301502, 0, 0.699999988, 0)
+	Run.ZIndex = 5
+	Run.Font = Enum.Font.Gotham
+	Run.Text = "Run"
+	Run.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Run.TextSize = 14.000
+
+	UICorner_16.Parent = Run
+
+	UIGradient.Parent = Run
+
+	Side_2.Name = "Side"
+	Side_2.Parent = Executor
+	Side_2.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+	Side_2.BorderSizePixel = 0
+	Side_2.Position = UDim2.new(0, 0, 0.0450000018, 0)
+	Side_2.Size = UDim2.new(0, 438, 0, 382)
+	Side_2.ZIndex = 2
+
+	UICorner_17.CornerRadius = UDim.new(0, 10)
+	UICorner_17.Parent = Side_2
+
+	ScrollingFrame_2.Parent = Side_2
+	ScrollingFrame_2.Active = true
+	ScrollingFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ScrollingFrame_2.BackgroundTransparency = 1.000
+	ScrollingFrame_2.BorderSizePixel = 0
+	ScrollingFrame_2.Position = UDim2.new(0, 0, 0.0617529899, 0)
+	ScrollingFrame_2.Size = UDim2.new(1, 0, 0.938247025, 0)
+	ScrollingFrame_2.ScrollBarThickness = 0
+
+	UIListLayout_4.Parent = ScrollingFrame_2
+	UIListLayout_4.SortOrder = Enum.SortOrder.LayoutOrder
+
+	SampleTab_2.Name = "SampleTab"
+	SampleTab_2.Parent = ScrollingFrame_2
+	SampleTab_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	SampleTab_2.BackgroundTransparency = 1.000
+	SampleTab_2.Size = UDim2.new(0, 143, 0, 44)
+	SampleTab_2.Visible = false
+
+	TextButton_2.Parent = SampleTab_2
+	TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextButton_2.BackgroundTransparency = 1.000
+	TextButton_2.Size = UDim2.new(1, 0, 1, 0)
+	TextButton_2.Font = Enum.Font.Gotham
+	TextButton_2.Text = "Character"
+	TextButton_2.TextColor3 = Color3.fromRGB(147, 147, 147)
+	TextButton_2.TextSize = 16.000
+
+	Main_3.Name = "Main"
+	Main_3.Parent = Executor
+	Main_3.AnchorPoint = Vector2.new(0.5, 0.5)
+	Main_3.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	Main_3.BackgroundTransparency = 1.000
+	Main_3.Position = UDim2.new(0.5, 0, 0.539255679, 0)
+	Main_3.Size = UDim2.new(1.00000024, 0, 0.921488583, 0)
+	Main_3.ZIndex = 2
+
+	UICorner_18.CornerRadius = UDim.new(0, 10)
+	UICorner_18.Parent = Main_3
+
+	Frame_4.Parent = Main_3
+	Frame_4.AnchorPoint = Vector2.new(0.5, 0.5)
+	Frame_4.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	Frame_4.Position = UDim2.new(0.50000006, 0, 0.497287005, 0)
+	Frame_4.Size = UDim2.new(0.954337955, 0, 0.953878999, 0)
+	Frame_4.ZIndex = 2
+
+	UICorner_19.Parent = Frame_4
+
+	ScrollingFrame_3.Parent = Frame_4
+	ScrollingFrame_3.Active = true
+	ScrollingFrame_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ScrollingFrame_3.BackgroundTransparency = 1.000
+	ScrollingFrame_3.BorderSizePixel = 0
+	ScrollingFrame_3.Size = UDim2.new(1, 0, 1, 0)
+	ScrollingFrame_3.ScrollBarThickness = 6
+
+	TextBox_2.Parent = ScrollingFrame_3
+	TextBox_2.AnchorPoint = Vector2.new(0.5, 0.5)
+	TextBox_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextBox_2.BackgroundTransparency = 1.000
+	TextBox_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+	TextBox_2.Size = UDim2.new(0.949999988, 0, 0.980000019, 0)
+	TextBox_2.ClearTextOnFocus = false
+	TextBox_2.Font = Enum.Font.Gotham
+	TextBox_2.MultiLine = true
+	TextBox_2.Text = ""
+	TextBox_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextBox_2.TextSize = 14.000
+	TextBox_2.TextXAlignment = Enum.TextXAlignment.Left
+	TextBox_2.TextYAlignment = Enum.TextYAlignment.Top
+
+	ExampleList.Name = "ExampleList"
+	ExampleList.Parent = PlayerInit
+	ExampleList.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	ExampleList.ClipsDescendants = true
+	ExampleList.Position = UDim2.new(0.214000016, 0, 0.111000009, 0)
+	ExampleList.Size = UDim2.new(0, 253, 0, 400)
+	ExampleList.Visible = false
+
+	UICorner_20.CornerRadius = UDim.new(0, 10)
+	UICorner_20.Parent = ExampleList
+
+	Title_4.Name = "Title"
+	Title_4.Parent = ExampleList
+	Title_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Title_4.BackgroundTransparency = 1.000
+	Title_4.Size = UDim2.new(0, 438, 0, 31)
+	Title_4.ZIndex = 3
+
+	titletop_3.Name = "titletop"
+	titletop_3.Parent = Title_4
+	titletop_3.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
+	titletop_3.BorderSizePixel = 0
+	titletop_3.Size = UDim2.new(0, 253, 0, 18)
+	titletop_3.ZIndex = 4
+
+	UICorner_21.CornerRadius = UDim.new(0, 10)
+	UICorner_21.Parent = titletop_3
+
+	titlebottom_3.Name = "titlebottom"
+	titlebottom_3.Parent = Title_4
+	titlebottom_3.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
+	titlebottom_3.BorderSizePixel = 0
+	titlebottom_3.Position = UDim2.new(0, 0, 0.464663357, 0)
+	titlebottom_3.Size = UDim2.new(0, 253, 0, 17)
+	titlebottom_3.ZIndex = 4
+
+	TextLabel_8.Parent = Title_4
+	TextLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel_8.BackgroundTransparency = 1.000
+	TextLabel_8.BorderColor3 = Color3.fromRGB(27, 27, 27)
+	TextLabel_8.Position = UDim2.new(0.036734663, 0, 0, 0)
+	TextLabel_8.Size = UDim2.new(0, 236, 0, 31)
+	TextLabel_8.ZIndex = 6
+	TextLabel_8.Font = Enum.Font.Gotham
+	TextLabel_8.Text = "Title"
+	TextLabel_8.TextColor3 = PrimaryColor
+	TextLabel_8.TextSize = 23.000
+	TextLabel_8.TextXAlignment = Enum.TextXAlignment.Left
+
+	Side_3.Name = "Side"
+	Side_3.Parent = ExampleList
+	Side_3.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+	Side_3.BorderSizePixel = 0
+	Side_3.Position = UDim2.new(0, 0, 0.0450000018, 0)
+	Side_3.Size = UDim2.new(0, 253, 0, 382)
+	Side_3.ZIndex = 2
+
+	UICorner_22.CornerRadius = UDim.new(0, 10)
+	UICorner_22.Parent = Side_3
+
+	ScrollingFrame_4.Parent = Side_3
+	ScrollingFrame_4.Active = true
+	ScrollingFrame_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ScrollingFrame_4.BackgroundTransparency = 1.000
+	ScrollingFrame_4.BorderSizePixel = 0
+	ScrollingFrame_4.Position = UDim2.new(0, 0, 0.0617529899, 0)
+	ScrollingFrame_4.Size = UDim2.new(1, 0, 0.938247025, 0)
+	ScrollingFrame_4.CanvasPosition = Vector2.new(0, 300)
+	ScrollingFrame_4.ScrollBarThickness = 0
+
+	UIListLayout_5.Parent = ScrollingFrame_4
+	UIListLayout_5.SortOrder = Enum.SortOrder.LayoutOrder
+
+	SampleTab_3.Name = "SampleTab"
+	SampleTab_3.Parent = ScrollingFrame_4
+	SampleTab_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	SampleTab_3.BackgroundTransparency = 1.000
+	SampleTab_3.Size = UDim2.new(0, 143, 0, 44)
+	SampleTab_3.Visible = false
+
+	TextButton_3.Parent = SampleTab_3
+	TextButton_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextButton_3.BackgroundTransparency = 1.000
+	TextButton_3.Size = UDim2.new(1, 0, 1, 0)
+	TextButton_3.Font = Enum.Font.Gotham
+	TextButton_3.Text = "Character"
+	TextButton_3.TextColor3 = Color3.fromRGB(147, 147, 147)
+	TextButton_3.TextSize = 16.000
+
+	List.Name = "List"
+	List.Parent = ExampleList
+	List.Active = true
+	List.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	List.BackgroundTransparency = 1.000
+	List.BorderSizePixel = 0
+	List.Position = UDim2.new(0, 0, 0.0775000006, 0)
+	List.Size = UDim2.new(1, 0, 0.922500014, 0)
+	List.ZIndex = 2
+	List.ScrollBarThickness = 8
+
+	UIListLayout_6.Parent = List
+	UIListLayout_6.SortOrder = Enum.SortOrder.LayoutOrder
+	UIListLayout_6.Padding = UDim.new(0, 5)
+
+	UIPadding_3.Parent = List
+	UIPadding_3.PaddingBottom = UDim.new(0, 5)
+	UIPadding_3.PaddingLeft = UDim.new(0, 8)
+	UIPadding_3.PaddingTop = UDim.new(0, 5)
+
+	SampleText_2.Name = "SampleText"
+	SampleText_2.Parent = List
+	SampleText_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	SampleText_2.Position = UDim2.new(0.00806451589, 0, 0, 0)
+	SampleText_2.Size = UDim2.new(0, 235, 0, 34)
+	SampleText_2.Visible = false
+	SampleText_2.ZIndex = 4
+
+	UICorner_23.CornerRadius = UDim.new(0, 7)
+	UICorner_23.Parent = SampleText_2
+
+	TextLabel_9.Parent = SampleText_2
+	TextLabel_9.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	TextLabel_9.BackgroundTransparency = 1.000
+	TextLabel_9.Position = UDim2.new(0.0212765951, 0, 0, 0)
+	TextLabel_9.Size = UDim2.new(0.978723407, 0, 1, 0)
+	TextLabel_9.Font = Enum.Font.Gotham
+	TextLabel_9.Text = "Text"
+	TextLabel_9.TextColor3 = PrimaryColor
+	TextLabel_9.TextSize = 23.000
+
+	UIGradient_2.Parent = TextLabel_9
 
 
 	local UDim2_new = UDim2.new
@@ -537,6 +859,37 @@ function Library:CreateWindow(Configs)
 	local TabCreation = {}
 	
 	
+	function TabCreation:CreateList(Configs)
+		local NewList = ExampleList:Clone()
+		NewList.Title.TextLabel.Text = Configs["Name"]
+		local DragFrame2 = DraggableObject.new(NewList)
+		DragFrame2:Enable()
+		NewList.Parent = PlayerInit
+		NewList.Visible = true
+		
+		local ListCreation = {}
+		
+		function ListCreation:AddItem(Configs)
+			local NewItem = NewList.List.SampleText:Clone()
+			NewItem.Parent = NewList.List
+			NewItem.Name = Configs["Name"]
+			NewItem.TextLabel.Text = Configs["Text"]
+			NewItem.TextLabel.TextColor3 = Configs["TextColor"]
+			NewItem.Visible = true
+			
+			local v39 = {}
+			
+			function v39:RemoveItem()
+				NewItem:Destroy()
+			end
+			
+			return v39
+		end
+		
+		return ListCreation
+	end
+	
+	
 	function TabCreation:ReturnToScreen()
 		Main.Position = UDim2.new(0.513798296, 0, 0.110989012, 0)
 	end
@@ -588,7 +941,9 @@ function Library:CreateWindow(Configs)
 			Toggle.Name = Configs["Name"]
 			Toggle.TextLabel.Text = Configs["Name"]
 			Toggle.Visible = true
-
+			
+			local ToggleFunctions = {}
+			
 			Toggle.ImageButton.MouseButton1Click:Connect(function()
 				if Toggle.ImageButton.Frame.Visible == false then
 					Toggle.ImageButton.Frame.Visible = true
@@ -598,7 +953,16 @@ function Library:CreateWindow(Configs)
 					Configs["Callback"]("Disable")
 				end
 			end)
-
+			
+			function ToggleFunctions:TurnOff()
+				Toggle.ImageButton.Frame.Visible = true
+			end
+			
+			function ToggleFunctions:TurnOn()
+				Toggle.ImageButton.Frame.Visible = false
+			end
+			
+			return ToggleFunctions
 		end
 		
 		function OptionCreation:CreateText(Configs)
@@ -617,6 +981,14 @@ function Library:CreateWindow(Configs)
 			Input.Name = Configs["Name"]
 			Input.TextLabel.Text = Configs["Name"]
 			Input.TextBox.PlaceholderText = Configs["PlaceholderText"]
+			if Configs["MultiLine"] then
+				Input.TextBox.MultiLine = Configs["MultiLine"]
+			end
+			
+			if Configs["ClearOnFocus"] then
+				Input.TextBox.ClearTextOnFocus = Configs["ClearOnFocus"]
+			end
+			
 			Input.Visible = true
 			
 			Input.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
