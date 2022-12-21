@@ -119,7 +119,7 @@ function Library:CreateWindow(Configs)
 	Main.ClipsDescendants = true
 	Main.Position = UDim2.new(0.513798296, 0, 0.110989012, 0)
 	Main.Size = UDim2.new(0, 490, 0, 502)
-	Main.Visible = false
+	Main.Visible = true
 
 	UICorner.CornerRadius = UDim.new(0, 10)
 	UICorner.Parent = Main
@@ -691,6 +691,7 @@ function Library:CreateWindow(Configs)
 	List.Size = UDim2.new(1, 0, 0.922500014, 0)
 	List.ZIndex = 2
 	List.ScrollBarThickness = 8
+	List.ScrollBarImageTransparency = 0.5
 
 	UIListLayout_6.Parent = List
 	UIListLayout_6.SortOrder = Enum.SortOrder.LayoutOrder
