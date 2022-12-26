@@ -934,6 +934,20 @@ function Library:CreateWindow(Configs)
 			button.Visible = true
 			
 			button.ImageButton.MouseButton1Click:Connect(Configs["Callback"])
+			
+			local OptionFunctions = {}
+
+			function OptionFunctions:Hide()
+				button.Visible = false
+			end
+
+			function OptionFunctions:Show()
+				button.Visible = true
+			end
+
+
+			return OptionFunctions
+			
 		end
 		
 		function OptionCreation:CreateToggle(Configs)
@@ -943,7 +957,7 @@ function Library:CreateWindow(Configs)
 			Toggle.TextLabel.Text = Configs["Name"]
 			Toggle.Visible = true
 			
-			local ToggleFunctions = {}
+			local OptionFunctions = {}
 			
 			Toggle.ImageButton.MouseButton1Click:Connect(function()
 				if Toggle.ImageButton.Frame.Visible == false then
@@ -955,15 +969,23 @@ function Library:CreateWindow(Configs)
 				end
 			end)
 			
-			function ToggleFunctions:TurnOff()
+			function OptionFunctions:TurnOff()
 				Toggle.ImageButton.Frame.Visible = false
 			end
 			
-			function ToggleFunctions:TurnOn()
+			function OptionFunctions:TurnOn()
 				Toggle.ImageButton.Frame.Visible = true
 			end
 			
-			return ToggleFunctions
+			function OptionFunctions:Hide()
+				Toggle.Visible = false
+			end
+			
+			function OptionFunctions:Show()
+				Toggle.Visible = true
+			end
+			
+			return OptionFunctions
 		end
 		
 		function OptionCreation:CreateText(Configs)
@@ -973,7 +995,22 @@ function Library:CreateWindow(Configs)
 			Text.TextLabel.Text = Configs["Text"]
 			Text.Visible = true
 			
-			return Text.TextLabel
+			
+			local OptionFunctions = {}
+			
+			function OptionFunctions:Hide()
+				Text.Visible = false
+			end
+
+			function OptionFunctions:Show()
+				Text.Visible = true
+			end
+			
+			function OptionFunctions:ChangeText(text)
+				Text.TextLabel.Text = text
+			end
+			
+			return OptionFunctions
 		end
 		
 		function OptionCreation:CreateInput(Configs)
@@ -995,6 +1032,20 @@ function Library:CreateWindow(Configs)
 			Input.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 				Configs["TextChangedCallback"](Input.TextBox.Text)
 			end)
+			
+			local OptionFunctions = {}
+
+			function OptionFunctions:Hide()
+				Input.Visible = false
+			end
+
+			function OptionFunctions:Show()
+				Input.Visible = true
+			end
+
+
+			return OptionFunctions
+			
 		end
 		
 		return OptionCreation
