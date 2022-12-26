@@ -109,7 +109,7 @@ function Library:CreateWindow(Configs)
 	--Properties:
 
 	PlayerInit.Name = "PlayerInit"
-	PlayerInit.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	PlayerInit.Parent = game.CoreGui
 	PlayerInit.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	PlayerInit.ResetOnSpawn = false
 
@@ -1061,3 +1061,20 @@ end
 
 
 return Library
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
