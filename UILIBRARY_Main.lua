@@ -995,6 +995,14 @@ function Library:CreateWindow(Configs)
 		PlayerInit:Destroy()
 	end
 	
+	function TabCreation:Hide()
+		Main.Visible = false
+	end
+	
+	function TabCreation:Show()
+		Main.Visible = true
+	end
+	
 	function TabCreation:CreateNotification(Configs)
 		local Notification = SampleNotif:Clone()
 		Notification.Parent = Notifications
@@ -1181,20 +1189,4 @@ end
 
 
 return Library
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
