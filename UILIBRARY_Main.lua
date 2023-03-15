@@ -1054,6 +1054,10 @@ function Library:CreateWindow(Configs)
 		
 		local OptionCreation = {}
 		
+		function OptionCreation:SetActivePage()
+			TabCreation:SetPage(page)
+		end
+		
 		function OptionCreation:CreateButton(Configs)
 			local button = SampleButton:Clone()
 			button.Parent = page
@@ -1077,6 +1081,7 @@ function Library:CreateWindow(Configs)
 			return OptionFunctions
 			
 		end
+		
 		
 		function OptionCreation:CreateToggle(Configs)
 			local Toggle = SampleToggle:Clone()
