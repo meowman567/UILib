@@ -1000,6 +1000,7 @@ function Library:CreateWindow(Configs)
 		Notification.Title.TitleText.Text = Configs["Title"] or "Notification"
 		Notification.NotifText.Text = Configs["Text"] or "None"
 		local TextSize = textservice:GetTextSize(Notification.NotifText.Text, Notification.NotifText.TextSize,Enum.Font.Gotham,Notification.NotifText.AbsoluteSize)
+		print(tostring(TextSize))
 		Notification.Size = UDim2.new(1,0,0,TextSize.Y+36)
 		Notification.Title.TitleText.TextColor3 = Configs["TitleColor"] or PrimaryColor
 		Notification.Parent = Notifications
