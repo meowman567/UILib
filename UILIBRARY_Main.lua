@@ -724,6 +724,99 @@ function Library:CreateWindow(Configs)
 	TextLabel_9.TextSize = 23.000
 
 	UIGradient_2.Parent = TextLabel_9
+	
+	-- NOTIFICATIONS ---------------------------------------------------------------
+	
+	local Notifications = Instance.new("Frame")
+	local UIListLayout = Instance.new("UIListLayout")
+	local UIPadding = Instance.new("UIPadding")
+	local SampleNotif = Instance.new("Frame")
+	local UICorner = Instance.new("UICorner")
+	local Title = Instance.new("Frame")
+	local TitleText = Instance.new("TextLabel")
+	local Frame = Instance.new("Frame")
+	local UICorner_2 = Instance.new("UICorner")
+	local Frame_2 = Instance.new("Frame")
+	local NotifText = Instance.new("TextLabel")
+
+	--Properties:
+
+	Notifications.Name = "Notifications"
+	Notifications.Parent = PlayerInit
+	Notifications.AnchorPoint = Vector2.new(1, 1)
+	Notifications.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Notifications.BackgroundTransparency = 1.000
+	Notifications.Position = UDim2.new(1, 0, 1, 0)
+	Notifications.Size = UDim2.new(0.158511728, 0, 1, 0)
+
+	UIListLayout.Parent = Notifications
+	UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+	UIListLayout.Padding = UDim.new(0, 7)
+
+	UIPadding.Parent = Notifications
+	UIPadding.PaddingBottom = UDim.new(0, 7)
+	UIPadding.PaddingRight = UDim.new(0, 7)
+
+	SampleNotif.Name = "SampleNotif"
+	SampleNotif.Parent = Notifications
+	SampleNotif.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	SampleNotif.ClipsDescendants = true
+	SampleNotif.Position = UDim2.new(0.0210843366, 0, 0.861572564, 0)
+	SampleNotif.Size = UDim2.new(1, 0, 0.129999995, 0)
+	SampleNotif.Visible = false
+
+	UICorner.CornerRadius = UDim.new(0, 10)
+	UICorner.Parent = SampleNotif
+
+	Title.Name = "Title"
+	Title.Parent = SampleNotif
+	Title.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+	Title.BackgroundTransparency = 1.000
+	Title.Size = UDim2.new(1, 0, 0, 24)
+
+	TitleText.Name = "TitleText"
+	TitleText.Parent = Title
+	TitleText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TitleText.BackgroundTransparency = 1.000
+	TitleText.Position = UDim2.new(0.0338461548, 0, 0, 0)
+	TitleText.Size = UDim2.new(0.96615386, 0, 1, 0)
+	TitleText.ZIndex = 2
+	TitleText.Font = Enum.Font.Gotham
+	TitleText.TextColor3 = Color3.fromRGB(130, 238, 255)
+	TitleText.TextSize = 17.000
+	TitleText.TextXAlignment = Enum.TextXAlignment.Left
+
+	Frame.Parent = Title
+	Frame.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+	Frame.BorderSizePixel = 0
+	Frame.Size = UDim2.new(1, 0, 1, 0)
+
+	UICorner_2.Parent = Frame
+
+	Frame_2.Parent = Title
+	Frame_2.AnchorPoint = Vector2.new(0, 1)
+	Frame_2.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+	Frame_2.BorderSizePixel = 0
+	Frame_2.Position = UDim2.new(0, 0, 1, 0)
+	Frame_2.Size = UDim2.new(1, 0, 0.5, 0)
+
+	NotifText.Name = "NotifText"
+	NotifText.Parent = SampleNotif
+	NotifText.AnchorPoint = Vector2.new(0.5, 0)
+	NotifText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	NotifText.BackgroundTransparency = 1.000
+	NotifText.Position = UDim2.new(0.5, 0, 0, 30)
+	NotifText.Size = UDim2.new(0.941538453, 0, 0.689564049, 0)
+	NotifText.ZIndex = 3
+	NotifText.Font = Enum.Font.Gotham
+	NotifText.Text = "Text"
+	NotifText.TextColor3 = Color3.fromRGB(255, 255, 255)
+	NotifText.TextSize = 17.000
+	NotifText.TextWrapped = true
+	NotifText.TextXAlignment = Enum.TextXAlignment.Left
+	NotifText.TextYAlignment = Enum.TextYAlignment.Top
 
 
 	local UDim2_new = UDim2.new
@@ -897,6 +990,28 @@ function Library:CreateWindow(Configs)
 
 	function TabCreation:DestroyGui()
 		PlayerInit:Destroy()
+	end
+	
+	function TabCreation:CreateNotification(Configs)
+		local Notification = SampleNotif:Clone()
+		Notification.Title.TitleText.Text = Configs["Title"] or "Notification"
+		Notification.NotifText.Text = Configs["Text"] or "None"
+		Notification.Size = UDim2.new(1,0,0,Notification.NotifText.TextBounds.Y+36)
+		Notification.Title.TitleText.TextColor3 = Configs["TitleColor"] or PrimaryColor
+		Notification.Parent = Notifications
+		Notification.Visible = true
+		task.spawn(function()
+			task.wait(Configs["Time"] or 7)
+			if Notification then
+				Notification:Destroy()
+			end
+		end)
+		
+		local NotificationFunctions = {}
+		
+		function NotificationFunctions:Destroy()
+			Notification:Destroy()
+		end
 	end
 	
 	function TabCreation:SetPage(Page)
