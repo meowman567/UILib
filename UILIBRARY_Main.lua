@@ -120,9 +120,10 @@ function Library:CreateWindow(Configs)
 	Main.Parent = PlayerInit
 	Main.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 	Main.ClipsDescendants = true
-	Main.Position = UDim2.new(0.513798296, 0, 0.110989012, 0)
+	Main.Position = UDim2.new(1,0,1,0)
 	Main.Size = UDim2.new(0, 490, 0, 502)
 	Main.Visible = true
+	Main.AnchorPoint = Vector2.new(1,1)
 
 	UICorner.CornerRadius = UDim.new(0, 10)
 	UICorner.Parent = Main
@@ -988,7 +989,7 @@ function Library:CreateWindow(Configs)
 	
 	
 	function TabCreation:ReturnToScreen()
-		Main.Position = UDim2.new(0.513798296, 0, 0.110989012, 0)
+		Main.Position = UDim2.new(1,0,1,0)
 	end
 
 	function TabCreation:DestroyGui()
