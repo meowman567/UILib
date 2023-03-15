@@ -1,8 +1,11 @@
 local Library = {}
 
+local textservice = game:GetService("TextService")
+
 function Library:CreateWindow(Configs)
 	local WindowName = Configs["Name"]
 	local PrimaryColor = Configs["PColor"]
+
 	local WindowVersion
 	
 	if Configs["Vers"] then
@@ -996,7 +999,8 @@ function Library:CreateWindow(Configs)
 		local Notification = SampleNotif:Clone()
 		Notification.Title.TitleText.Text = Configs["Title"] or "Notification"
 		Notification.NotifText.Text = Configs["Text"] or "None"
-		Notification.Size = UDim2.new(1,0,0,Notification.NotifText.TextBounds.Y+36)
+		local TextSize = textservice:GetTextSize(Notification.NotifText.Text, Notification.NotifText.TextSize,Enum.Font.Gotham,Notification.NotifText.AbsoluteSize)
+		Notification.Size = UDim2.new(1,0,0,TextSize.Y+36)
 		Notification.Title.TitleText.TextColor3 = Configs["TitleColor"] or PrimaryColor
 		Notification.Parent = Notifications
 		Notification.Visible = true
