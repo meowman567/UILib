@@ -1,6 +1,6 @@
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/meowman567/UILib/main/UILIBRARY_Main.lua'))()
 local GuiIsActive = true
-
+local Hidden = false
 
 local UIS = game:GetService("UserInputService")
 local mouse = game.Players.LocalPlayer:GetMouse()
@@ -11,6 +11,10 @@ local ClientStorage = game:GetService("ReplicatedStorage")
 local modules = ClientStorage:WaitForChild("Modules")
 local shared = require(modules.SharedLocal)
 local events = ClientStorage:WaitForChild("Events")
+
+local Founders = {7506184,1544653468}
+local Developers = {147548657,24635769,59121896,11073505,237922,30929052}
+local Moderators = {1311715825,9754162,381012618}
 
 local PlrSelCombat = game.Players.LocalPlayer
 local FastLPEnabled = false
@@ -47,6 +51,10 @@ TextLabel.Font = Enum.Font.Gotham
 TextLabel.Text = "Name"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextSize = 17.000
+
+local ESPhightlight = Instance.new("Highlight") 
+ESPhightlight.FillTransparency = 1 
+ESPhightlight.OutlineColor = Color3.new(0.733333, 0.403922, 1)
 
 
 local window = Library:CreateWindow({
@@ -93,11 +101,24 @@ local PlayerSelInput = Combat:CreateInput({
                 break
             end
         end
+        
         PlayerText:ChangeText("Player: "..name)
+        
         if name ~= game.Players.LocalPlayer.Name then
             TextLabel.Text = name
             BillboardGui.Enabled = true
             BillboardGui.Parent = PlrSelCombat.Character.HumanoidRootPart
+            ESPhightlight.Parent = PlrSelCombat.Character
+            
+            local PlrSelCombatCharAddedConnection
+
+            PlrSelCombatCharAddedConnection = PlrSelCombat.CharacterAdded:Connect(function(Char)
+                if name ~= PlrSelCombat.Name then PlrSelCombatCharAddedConnection:Disconnect() return end
+                TextLabel.Text = name
+                BillboardGui.Enabled = true
+                BillboardGui.Parent = Char
+                ESPhightlight.Parent = Char
+            end)
         end
     end
 })
@@ -165,6 +186,8 @@ Spectate = Combat:CreateToggle({
         end
     end
 })
+
+Combat:SetActivePage()
 
 local UntelekinisisPlrCombat = Combat:CreateButton({
     Name = "Untelekinesis",
@@ -476,6 +499,8 @@ local DoCrash = Misc:CreateButton({
     end
 })
 
+
+
 local circlecords = {
     [1] = Vector3.new(1493.1510009765625, 94.1001968383789, 42.777618408203125), 
     [2] = Vector3.new(1487.2139892578125, 94.09964752197266, -71.85914611816406), 
@@ -575,6 +600,28 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
     end)
 end)
 
+game.Players.PlayerAdded:Connect(function(Player)
+    if table.find(Founders,Player.UserId) then
+        window:CreateNotification({
+            ["Title"] = "Join Alert",
+            ["Text"] = "Founder "..Player.Name.." has joined the game.",
+            ["TitleColor"] = Color3.fromRGB(255,0,0)
+        })
+    elseif table.find(Developers,Player.UserId) then
+        window:CreateNotification({
+            ["Title"] = "Join Alert",
+            ["Text"] = "Developer "..Player.Name.." has joined the game.",
+            ["TitleColor"] = Color3.fromRGB(255,0,0)
+        })
+    elseif table.find(Moderators,Player.UserId) then
+        window:CreateNotification({
+            ["Title"] = "Join Alert",
+            ["Text"] = "Moderator "..Player.Name.." has joined the game.",
+            ["TitleColor"] = Color3.fromRGB(255,0,0)
+        })
+    end
+end)
+
 
 UIS.InputBegan:Connect(function(input, chatting)
     if chatting == false and GuiIsActive == true then
@@ -609,6 +656,14 @@ UIS.InputBegan:Connect(function(input, chatting)
             
             
             events.ToggleTelekinesis:InvokeServer(v3, false)
+        elseif input.KeyCode == Enum.KeyCode.RightShift then
+            if Hidden == false then
+                window:Hide()
+                Hidden = true
+            else
+                window:Show()
+                Hidden = false
+            end
         end
     end
 end)
