@@ -1114,50 +1114,41 @@ function Library:CreateWindow(Configs)
 			
 			local OptionFunctions = {}
 			
+			local function Enable()
+				Toggle.ImageButton.Frame.Visible = true
+				Enabled = true
+				local goal = {}
+				goal.Size = UDim2.new(0.91,0,0.8,0)
+				local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
+				Toggle.ImageButton.Frame.Size = UDim2.new(0,0,0)
+				tween:Play()
+			end
+			
+			local function Disable()
+				Enabled = false
+				local goal = {}
+				goal.Size = UDim2.new(0,0,0,0)
+				local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
+				Toggle.ImageButton.Frame.Size = UDim2.new(0.91,0,0.8,0)
+				tween:Play()
+			end
+			
 			Toggle.ImageButton.MouseButton1Click:Connect(function()
 				if Enabled == false then
-					Toggle.ImageButton.Frame.Visible = true
-					Enabled = true
-					local goal = {}
-					goal.Transparency = 0
-					goal.Size = UDim2.new(0.91,0,0.8,0)
-					local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
-					Toggle.ImageButton.Frame.Size = UDim2.new(0,0,0)
-					tween:Play()
+					Enable()
 					Configs["Callback"]("Enable")
 				else
-					Enabled = false
-					local goal = {}
-					--goal.Transparency = 1
-					goal.Size = UDim2.new(0,0,0,0)
-					local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
-					Toggle.ImageButton.Frame.Size = UDim2.new(0.91,0,0.8,0)
-					tween:Play()
-					
+					Disable()
 					Configs["Callback"]("Disable")
 				end
 			end)
 			
 			function OptionFunctions:TurnOff()
-				Enabled = false
-				local goal = {}
-				--goal.Transparency = 1
-				goal.Size = UDim2.new(0,0,0,0)
-				local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
-				Toggle.ImageButton.Frame.Size = UDim2.new(0.91,0,0.8,0)
-				tween:Play()
-				
+				Disable()
 			end
 			
 			function OptionFunctions:TurnOn()
-				Toggle.ImageButton.Frame.Visible = true
-				Enabled = true
-				local goal = {}
-				goal.Transparency = 0
-				goal.Size = UDim2.new(0.91,0,0.8,0)
-				local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
-				Toggle.ImageButton.Frame.Size = UDim2.new(0,0,0)
-				tween:Play()
+				Enable()
 			end
 			
 			function OptionFunctions:Hide()
