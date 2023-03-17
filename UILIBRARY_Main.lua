@@ -1131,7 +1131,10 @@ function Library:CreateWindow(Configs)
 					goal.Size = UDim2.new(0,0,0,0)
 					local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
 					tween:Play()
-					Toggle.ImageButton.Frame.Visible = false
+					task.spawn(function()
+						tween.Completed:Wait()
+						Toggle.ImageButton.Frame.Visible = false
+					end)
 					Configs["Callback"]("Disable")
 				end
 			end)
@@ -1143,7 +1146,10 @@ function Library:CreateWindow(Configs)
 				goal.Size = UDim2.new(0,0,0,0)
 				local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
 				tween:Play()
-				Toggle.ImageButton.Frame.Visible = false
+				task.spawn(function()
+					tween.Completed:Wait()
+					Toggle.ImageButton.Frame.Visible = false
+				end)
 			end
 			
 			function OptionFunctions:TurnOn()
