@@ -1,6 +1,7 @@
 local Library = {}
 
 local textservice = game:GetService("TextService")
+local ts = game:GetService("TweenService")
 
 function Library:CreateWindow(Configs)
 	local WindowName = Configs["Name"]
@@ -1028,12 +1029,31 @@ function Library:CreateWindow(Configs)
 		end
 	end
 	
-	function TabCreation:SetPage(Page)
+	function TabCreation:SetPage(Page, Tab)
 		for x,v in pairs(Main_2:GetChildren()) do
 			if v:FindFirstChild("UIListLayout") then
 				v.Visible = false
 			end
 		end
+		
+		for x,v in pairs(Side.ScrollingFrame:GetChildren()) do
+			if v:FindFirstChild("Active") then
+				local goal2 = {}
+				goal2.TextColor3 = Color3.fromRGB(147, 147, 147)
+				v:FindFirstChild("Active"):Destroy()
+				local tween = ts:Create(v.TextButton,TweenInfo.new(0.5),goal2)
+				tween:Play()
+			end
+		end
+		
+		local goal = {}
+		goal.TextColor3 = Color3.new(1,1,1)
+		local Active = Instance.new("BoolValue")
+		Active.Name = "Active"
+		Active.Parent = Tab
+		local tween = ts:Create(Tab.TextButton,TweenInfo.new(0.5),goal)
+		tween:Play()
+		
 		Page.Visible = true
 	end
 	
@@ -1050,13 +1070,13 @@ function Library:CreateWindow(Configs)
 		page.Parent = Main_2
 		page.Visible = false
 		
-		tab.TextButton.MouseButton1Click:Connect(function()TabCreation:SetPage(page)end)	
+		tab.TextButton.MouseButton1Click:Connect(function()TabCreation:SetPage(page, tab)end)	
 		
 		
 		local OptionCreation = {}
 		
 		function OptionCreation:SetActivePage()
-			TabCreation:SetPage(page)
+			TabCreation:SetPage(page, tab)
 		end
 		
 		function OptionCreation:CreateButton(Configs)
