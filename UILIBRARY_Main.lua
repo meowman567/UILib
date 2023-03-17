@@ -1127,7 +1127,7 @@ function Library:CreateWindow(Configs)
 				else
 					Enabled = false
 					local goal = {}
-					goal.Transparency = 1
+					--goal.Transparency = 1
 					goal.Size = UDim2.new(0,0,0,0)
 					local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
 					tween:Play()
@@ -1142,7 +1142,7 @@ function Library:CreateWindow(Configs)
 			function OptionFunctions:TurnOff()
 				Enabled = false
 				local goal = {}
-				goal.Transparency = 1
+				--goal.Transparency = 1
 				goal.Size = UDim2.new(0,0,0,0)
 				local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
 				tween:Play()
