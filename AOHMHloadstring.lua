@@ -11,6 +11,7 @@ local ClientStorage = game:GetService("ReplicatedStorage")
 local modules = ClientStorage:WaitForChild("Modules")
 local shared = require(modules.SharedLocal)
 local events = ClientStorage:WaitForChild("Events")
+local Connections = {}
 
 local Founders = {7506184,1544653468}
 local Developers = {147548657,24635769,59121896,11073505,237922,30929052}
@@ -29,6 +30,7 @@ local SCNum = 1
 
 _G.AntiTele = false
 if game.ClientStorage.Effects:FindFirstChild("Shield") then game.ClientStorage.Effects.Shield:Destroy() end
+if game.Workspace.Ambience:FindFirstChild("cityAmbience") then game.Workspace.Ambience:FindFirstChild("cityAmbience"):Destroy() end
 
 
 local BillboardGui = Instance.new("BillboardGui")
@@ -404,7 +406,8 @@ local AntiTele = Combat:CreateToggle({
     Callback = function(mode)
         if mode == "Enable" then
             _G.AntiTele = true
-            game.Players.LocalPlayer.Character.HumanoidRootPart.ChildAdded:Connect(function(child)
+            local connection
+            Connections["AntiTele1"] = game.Players.LocalPlayer.Character.HumanoidRootPart.ChildAdded:Connect(function(child)
                 if _G.AntiTele == false then return end
                 if child.Name == "telekinesisGyro" then
                     
@@ -555,7 +558,7 @@ local circlecords = {
     [51] = Vector3.new(1502.38720703125, 94.0999526977539, 79.3021469116211), 
 }
 
-game.Workspace.ExperienceOrbs.ChildAdded:Connect(function(Child)
+Connections["OrbFarm"] = game.Workspace.ExperienceOrbs.ChildAdded:Connect(function(Child)
     wait(0.05)
     if OrbFarmEnabled == true then
         firetouchinterest(playerhead,Child,0)
@@ -563,7 +566,19 @@ game.Workspace.ExperienceOrbs.ChildAdded:Connect(function(Child)
     end
 end)
 
-game.Workspace.ChildAdded:Connect(function(v)
+Connections["LocalPlayerChar"] = game.Players.LocalPlayer.CharacterAdded:Connect(function(Char)
+    Connections["AntiTele"] = game.Players.LocalPlayer.Character.ChildAdded:Connect(function(Child)
+        if _G.AntiTele == true then
+            print(Child.Name)
+            if Child.Name == "telekinesisGyro" then       
+                local v3 = shared.GetCamDirection()
+                events.ToggleTelekinesis:InvokeServer(v3, false, game.Players.LocalPlayer.Character)
+            end
+        end
+    end)
+end)
+
+Connections["NPCFarm"] = game.Workspace.ChildAdded:Connect(function(v)
     if NpcFarmEnabled == true then
         wait(0.1)
         if v.Name == "Thug" or v.Name == "Civilian" or v.Name == "Police" and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 1 then
@@ -587,20 +602,8 @@ game.Workspace.ChildAdded:Connect(function(v)
     end
 end)
 
-game.Players.LocalPlayer.CharacterAdded:Connect(function(Character)
-    if GuiIsActive == false then return end
-    Character.HumanoidRootPart.ChildAdded:Connect(function(child)
-        if _G.AntiTele == true then
-            if child.Name == "telekinesisGyro" then
-                print("2")
-                local v3 = shared.GetCamDirection()
-                events.ToggleTelekinesis:InvokeServer(v3, false, game.Players.LocalPlayer.Character)
-            end
-        end
-    end)
-end)
 
-game.Players.PlayerAdded:Connect(function(Player)
+Connections["PersonJoin"] = game.Players.PlayerAdded:Connect(function(Player)
     if table.find(Founders,Player.UserId) then
         window:CreateNotification({
             ["Title"] = "Join Alert",
@@ -622,13 +625,27 @@ game.Players.PlayerAdded:Connect(function(Player)
     end
 end)
 
+Connections["PersonLeave"] = game.Players.PlayerRemoving:Connect(function(Player)
+    if Player == PlrSelCombat then
+        window:CreateNotification({
+            ["Title"] = "Selected Player Leaving",
+            ["Text"] = Player.Name.." has left the game.",
+        })
+    end
+end)
 
-local InputConnection = UIS.InputBegan:Connect(function(input, chatting)
+
+Connections["InputConnectionis"] = UIS.InputBegan:Connect(function(input, chatting)
     if chatting == false and GuiIsActive == true then
         if input.KeyCode == Enum.KeyCode.Home then
             window:ReturnToScreen()
         elseif input.KeyCode == Enum.KeyCode.PageUp then
             GuiIsActive = false
+            for x,v in next, Connections do
+                pcall(function()
+                    v:Disconnect()
+                end)
+            end
             window:DestroyGui()
         elseif input.KeyCode == Enum.KeyCode.G then
             if FastLPEnabled == false then
