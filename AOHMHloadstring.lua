@@ -587,9 +587,9 @@ game.Workspace.ChildAdded:Connect(function(v)
     end
 end)
 
-game.Players.LocalPlayer.CharacterAdded:Connect(function()
+game.Players.LocalPlayer.CharacterAdded:Connect(function(Character)
     if GuiIsActive == false then return end
-    game.Players.LocalPlayer.Character.HumanoidRootPart.ChildAdded:Connect(function(child)
+    Character.HumanoidRootPart.ChildAdded:Connect(function(child)
         if _G.AntiTele == true then
             if child.Name == "telekinesisGyro" then
                 print("2")
@@ -623,7 +623,7 @@ game.Players.PlayerAdded:Connect(function(Player)
 end)
 
 
-UIS.InputBegan:Connect(function(input, chatting)
+local InputConnection = UIS.InputBegan:Connect(function(input, chatting)
     if chatting == false and GuiIsActive == true then
         if input.KeyCode == Enum.KeyCode.Home then
             window:ReturnToScreen()
@@ -634,18 +634,35 @@ UIS.InputBegan:Connect(function(input, chatting)
             if FastLPEnabled == false then
                 FastPunchLight:TurnOn()
                 FastLPEnabled = true
-                while FastLPEnabled == true do
-                    local args = {
-                        [1] = 0,
-                        [2] = 0.1,
-                        [3] = 1
-                    }
-                    
-                    game:GetService("ReplicatedStorage").Events.Punch:FireServer(unpack(args))
-                    
-        
-                    wait()
-                end
+                FastPunchHeavy:TurnOn()
+                FastHPEnabled = true
+                task.spawn(function()
+                    while FastLPEnabled == true do
+                        local args = {
+                            [1] = 0,
+                            [2] = 0.1,
+                            [3] = 1
+                        }
+                        
+                        game:GetService("ReplicatedStorage").Events.Punch:FireServer(unpack(args))
+                        
+            
+                        wait()
+                    end
+                end)
+                task.spawn(function()
+                    while FastHPEnabled == true do
+                        local args = {
+                            [1] = 0.3,
+                            [2] = 0.1,
+                            [3] = 1
+                        }
+            
+                        game:GetService("ReplicatedStorage").Events.Punch:FireServer(unpack(args))
+            
+                        wait()
+                    end
+                end)
             else
                 FastLPEnabled = false
                 FastPunchLight:TurnOff()
