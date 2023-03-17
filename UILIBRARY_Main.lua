@@ -1122,7 +1122,7 @@ function Library:CreateWindow(Configs)
 					goal.Transparency = 0
 					goal.Size = UDim2.new(0.91,0,0.8,0)
 					local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
-					Toggle.ImageButton.Frame.Size = UDim2.new(0.91,0,0.8,0)
+					Toggle.ImageButton.Frame.Size = UDim2.new(0,0,0)
 					tween:Play()
 					Configs["Callback"]("Enable")
 				else
