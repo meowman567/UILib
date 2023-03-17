@@ -1106,6 +1106,7 @@ function Library:CreateWindow(Configs)
 		
 		function OptionCreation:CreateToggle(Configs)
 			local Toggle = SampleToggle:Clone()
+			local Enabled = false
 			Toggle.Parent = page
 			Toggle.Name = Configs["Name"]
 			Toggle.TextLabel.Text = Configs["Name"]
@@ -1114,21 +1115,45 @@ function Library:CreateWindow(Configs)
 			local OptionFunctions = {}
 			
 			Toggle.ImageButton.MouseButton1Click:Connect(function()
-				if Toggle.ImageButton.Frame.Visible == false then
+				if Enabled == false then
 					Toggle.ImageButton.Frame.Visible = true
+					Enabled = true
+					local goal = {}
+					goal.Transparency = 0
+					goal.Size = UDim2.new(0.91,0,0.8,0)
+					local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
+					tween:Play()
 					Configs["Callback"]("Enable")
 				else
+					Enabled = false
+					local goal = {}
+					goal.Transparency = 1
+					goal.Size = UDim2.new(0,0,0,0)
+					local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
+					tween:Play()
 					Toggle.ImageButton.Frame.Visible = false
 					Configs["Callback"]("Disable")
 				end
 			end)
 			
 			function OptionFunctions:TurnOff()
+				Enabled = false
+				local goal = {}
+				goal.Transparency = 1
+				goal.Size = UDim2.new(0,0,0,0)
+				local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
+				tween:Play()
 				Toggle.ImageButton.Frame.Visible = false
 			end
 			
 			function OptionFunctions:TurnOn()
 				Toggle.ImageButton.Frame.Visible = true
+				Enabled = true
+				local goal = {}
+				goal.Transparency = 0
+				goal.Size = UDim2.new(0.91,0,0.8,0)
+				local tween = ts:Create(Toggle.ImageButton.Frame, TweenInfo.new(0.4,Enum.EasingStyle.Exponential),goal)
+				tween:Play()
 			end
 			
 			function OptionFunctions:Hide()
