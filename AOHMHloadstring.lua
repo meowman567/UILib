@@ -666,6 +666,8 @@ local InputConnection = UIS.InputBegan:Connect(function(input, chatting)
             else
                 FastLPEnabled = false
                 FastPunchLight:TurnOff()
+                FastPunchHeavy:TurnOff()
+                FastHPEnabled = false
             end
         elseif input.KeyCode == Enum.KeyCode.H then
             local v3 = shared.GetCamDirection()
