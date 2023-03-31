@@ -1007,7 +1007,10 @@ function Library:CreateWindow(Configs)
 	end
 	
 	function TabCreation:ShrinkWindow(Time)
-		local UICorner = titlebottom:FindFirstChild("UICorner") or Instance.new("UICorner",titlebottom)
+		local UICorner = titlebottom:FindFirstChild("UICorner")
+		if not UICorner then
+			Instance.new("UICorner").Parent = titlebottom
+		end
 		
 		local Goal = {}
 		Goal.Size = UDim2.fromOffset(490,31)
