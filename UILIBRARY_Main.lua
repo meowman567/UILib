@@ -1016,16 +1016,23 @@ function Library:CreateWindow(Configs)
 		Goal.Size = UDim2.fromOffset(490,31)
 		local Tween = ts:Create(Main,TweenInfo.new(Time or 1,Enum.EasingStyle.Quart),Goal)
 		Tween:Play()
+		task.spawn(function()
+			Tween.Completed:Wait()
+			Side.Visible = false
+		end)
+		
 	end
 
 	function TabCreation:ExpandWindow(Time)
 		local UICorner = titlebottom:FindFirstChild("UICorner")
 		if UICorner then UICorner:Destroy() end
+		Side.Visible = false
 		
 		local Goal = {}
 		Goal.Size = UDim2.fromOffset(490,502)
 		local Tween = ts:Create(Main,TweenInfo.new(Time or 1,Enum.EasingStyle.Quart),Goal)
 		Tween:Play()
+		
 	end
 	
 	function TabCreation:CreateNotification(Configs)
