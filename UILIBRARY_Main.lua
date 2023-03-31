@@ -1007,7 +1007,7 @@ function Library:CreateWindow(Configs)
 	end
 	
 	function TabCreation:ShrinkWindow(Time)
-		local UICorner = titlebottom:FindFirstChild("UICorner") or Instance.new("UICorner",titletop)
+		local UICorner = titlebottom:FindFirstChild("UICorner") or Instance.new("UICorner",titlebottom)
 		
 		local Goal = {}
 		Goal.Size = UDim2.fromOffset(490,31)
@@ -1016,8 +1016,8 @@ function Library:CreateWindow(Configs)
 	end
 
 	function TabCreation:ExpandWindow(Time)
-		local UICorner = titlebottom:FindFirstChild("UICorner") or Instance.new("UICorner",titletop)
-		UICorner:Destroy()
+		local UICorner = titlebottom:FindFirstChild("UICorner")
+		if UICorner then UICorner:Destroy() end
 		
 		local Goal = {}
 		Goal.Size = UDim2.fromOffset(490,502)
