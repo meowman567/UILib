@@ -6,6 +6,7 @@ local ts = game:GetService("TweenService")
 function Library:CreateWindow(Configs)
 	local WindowName = Configs["Name"]
 	local PrimaryColor = Configs["PColor"]
+	local Expanded = true
 
 	local WindowVersion
 	
@@ -140,7 +141,7 @@ function Library:CreateWindow(Configs)
 	titletop.Parent = Title
 	titletop.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
 	titletop.BorderSizePixel = 0
-	titletop.Size = UDim2.new(0, 490, 0, 18)
+	titletop.Size = UDim2.new(0, 490, 0, 31)
 	titletop.ZIndex = 4
 
 	UICorner_2.CornerRadius = UDim.new(0, 10)
@@ -1005,6 +1006,25 @@ function Library:CreateWindow(Configs)
 		Main.Visible = true
 	end
 	
+	function TabCreation:ShrinkWindow(Time)
+		local UICorner = titletop:FindFirstChild("UICorner") or Instance.new("UICorner",titletop)
+		
+		local Goal = {}
+		Goal.Size = UDim2.fromOffset(490,31)
+		local Tween = ts:Create(Main,TweenInfo.new(Time or 1,Enum.EasingStyle.Quart),Goal)
+		Tween:Play()
+	end
+
+	function TabCreation:ExpandWindow(Time)
+		local UICorner = titletop:FindFirstChild("UICorner") or Instance.new("UICorner",titletop)
+		UICorner:Destroy()
+		
+		local Goal = {}
+		Goal.Size = UDim2.fromOffset(490,502)
+		local Tween = ts:Create(Main,TweenInfo.new(Time or 1,Enum.EasingStyle.Quart),Goal)
+		Tween:Play()
+	end
+	
 	function TabCreation:CreateNotification(Configs)
 		local Notification = SampleNotif:Clone()
 		Notification.Parent = Notifications
@@ -1028,6 +1048,7 @@ function Library:CreateWindow(Configs)
 			Notification:Destroy()
 		end
 	end
+	
 	
 	function TabCreation:SetPage(Page, Tab)
 		for x,v in pairs(Main_2:GetChildren()) do
