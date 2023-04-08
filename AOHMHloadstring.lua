@@ -6,7 +6,7 @@ local UIS = game:GetService("UserInputService")
 local mouse = game.Players.LocalPlayer:GetMouse()
 local Camera = workspace.CurrentCamera
 local playerhead = game.Players.LocalPlayer.Character.Head
-local VU = game:GetService("VirtualUser")
+--local VU = game:GetService("VirtualUser")
 local ClientStorage = game:GetService("ReplicatedStorage")
 local modules = ClientStorage:WaitForChild("Modules")
 local shared = require(modules.SharedLocal)
@@ -86,10 +86,7 @@ local Misc = window:CreatePage({
 })
 
 
-local PlayerText = Combat:CreateText({
-    Name = "PlayerSelected",
-    Text = "Player: "
-})
+
 
 local PlayerSelInput = Combat:CreateInput({
     Name = "Player:",
@@ -442,7 +439,7 @@ local OrbFarm = AutoFarm:CreateToggle({
                 
             end
             while OrbFarmEnabled == true do
-                VU:CaptureController()VU:ClickButton2(Vector2.new())
+                --VU:CaptureController()VU:ClickButton2(Vector2.new())
                 wait(01)
                 
 
