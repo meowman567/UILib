@@ -85,7 +85,10 @@ local Misc = window:CreatePage({
 	Name = "Misc"
 })
 
-
+local PlayerText = Combat:CreateText({
+    Name = "PlayerSelected",
+    Text = "Player: "
+})
 
 
 local PlayerSelInput = Combat:CreateInput({
